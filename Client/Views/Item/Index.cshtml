@@ -1,0 +1,59 @@
+﻿@model IEnumerable<API.Models.Item>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>List Item</h1>
+
+<p>
+    <a class ="btn btn-primary" asp-action="Create">Insert New Item</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.item_code)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.item_name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.stock)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.selling_price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.purchase_price)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.item_code)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.item_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.stock)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.selling_price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.purchase_price)
+            </td>
+            <td>
+                    @Html.ActionLink("Edit", "Edit", new {  id=item.item_code  }, new { @class = "btn btn-outline-warning" })
+                    @Html.ActionLink("Details", "Details", new {  id=item.item_code  },  new { @class = "btn btn-outline-success" })
+                    @Html.ActionLink("Delete", "Delete", new { id=item.item_code  },  new { @class = "btn btn-outline-danger" })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

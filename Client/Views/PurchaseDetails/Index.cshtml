@@ -1,0 +1,54 @@
+﻿@model IEnumerable<API.Models.PurchaseDetails>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "_ManagerLayout";
+}
+
+<h1>History Purchase Details</h1>
+
+<p>
+    <a class="btn btn-primary" asp-action="Create">Create New</a> || <a class="btn btn-success" asp-controller="Export" asp-action="ExportToExcel">Export to Excel</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.purchase_code)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.item_code)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.purchase_amount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.purchase_price)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.purchase_code)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.item_code)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.purchase_amount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.purchase_price)
+            </td>
+            <td>
+                    @Html.ActionLink("Edit", "Edit", new { id=item.purchase_code } , new { @class = "btn btn-outline-warning" })
+                    @Html.ActionLink("Details", "Details", new {  id=item.purchase_code }, new { @class = "btn btn-outline-success" })
+                    @Html.ActionLink("Delete", "Delete", new {  id=item.purchase_code }, new { @class = "btn btn-outline-danger" })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
